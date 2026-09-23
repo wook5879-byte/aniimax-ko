@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniimax - Aniimo Production Optimizer</title>
+    <title>Aniimax - 애니이모 생산 최적화 계산기</title>
     <link rel="stylesheet" href="style.css">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -11,82 +11,79 @@
     <header>
         <h1>aniimax</h1>
         <div class="header-buttons">
-            <button class="toggle-button" onclick="showFacilities()" id="facilitiesToggle">facilities</button>
-            <button class="toggle-button" onclick="showMath()" id="mathToggle">math</button>
-            <button class="toggle-button" onclick="showHelp()" id="helpToggle">help</button>
-            <button class="toggle-button" onclick="toggleTheme()" id="themeToggle">light</button>
+            <button class="toggle-button" onclick="showFacilities()" id="facilitiesToggle">시설 목록</button>
+            <button class="toggle-button" onclick="showMath()" id="mathToggle">수학적 원리</button>
+            <button class="toggle-button" onclick="showHelp()" id="helpToggle">도움말</button>
+            <button class="toggle-button" onclick="toggleTheme()" id="themeToggle">라이트 모드</button>
         </div>
     </header>
-    <p class="subtitle">aniimo homeland production optimizer</p>
-    <p class="disclaimer"><span class="disclaimer-icon" aria-hidden="true">⚠</span>Game data for the full release is still being filled in, so some facilities and items are missing.</p>
+    <p class="subtitle">애니이모 영지 생산 최적화 계산기</p>
+    <p class="disclaimer"><span class="disclaimer-icon" aria-hidden="true">⚠</span> 정식 출시 게임 데이터가 계속 업데이트 중이므로, 일부 시설 및 아이템 정보가 누락되어 있을 수 있습니다.</p>
 
     <div class="container">
 
         <main>
             <section class="card config-section">
                 <div class="card-head">
-                    <h2>Your homeland</h2>
-                    <button type="button" id="clear-saved-btn" class="toggle-button small" title="Your inputs are saved in this browser automatically.">Clear saved values</button>
+                    <h2>내 영지 설정</h2>
+                    <button type="button" id="clear-saved-btn" class="toggle-button small" title="입력값은 브라우저에 자동으로 저장됩니다.">저장된 값 초기화</button>
                 </div>
 
-                <div class="tabs" role="radiogroup" aria-label="Input mode">
-                    <label><input type="radio" name="config-mode" id="mode-simple" value="simple" checked> Simple</label>
-                    <label><input type="radio" name="config-mode" id="mode-advanced" value="advanced"> Advanced</label>
+                <div class="tabs" role="radiogroup" aria-label="입력 모드">
+                    <label><input type="radio" name="config-mode" id="mode-simple" value="simple" checked> 간편 설정</label>
+                    <label><input type="radio" name="config-mode" id="mode-advanced" value="advanced"> 상세 설정</label>
                 </div>
 
                 <div id="simple-config">
                     <div class="input-row">
                         <div class="input-field">
-                            <label for="home-level">RV level</label>
+                            <label for="home-level">영지 레벨 (RV)</label>
                             <select id="home-level"></select>
                         </div>
                     </div>
-                    <p class="hint">Assumes you've built and upgraded everything your RV level allows.</p>
+                    <p class="hint">선택한 영지 레벨에서 해금되는 모든 시설과 모듈이 건설 및 업그레이드되었다고 가정합니다.</p>
                     <div id="simple-summary"></div>
-                    <p class="hint small"><button type="button" id="customize-btn" class="toggle-button">Customize in Advanced</button> to change any count or level.</p>
+                    <p class="hint small"><button type="button" id="customize-btn" class="toggle-button">상세 설정에서 수정하기</button> 버튼을 눌러 개별 수량 및 레벨을 변경할 수 있습니다.</p>
                 </div>
 
                 <div id="advanced-config">
-                    <h3>Facilities</h3>
-                    <p class="hint">Set the count and level for each facility you have.</p>
+                    <h3>시설 목록</h3>
+                    <p class="hint">보유 중인 각 시설의 수량과 레벨을 설정하세요.</p>
 
-                    <!-- Facility cards are generated dynamically by app.js from the FACILITIES config,
-                         grouped into category sections (Materials / Environment / Materials
-                         Processing), so new facilities can be added without editing this file. -->
                     <div class="facilities-container" id="facilities-grid"></div>
 
-                    <h3>Item Upgrade Modules</h3>
-                    <p class="hint">Set the level for each upgrade module you have unlocked (0 = not unlocked).</p>
+                    <h3>아이템 업그레이드 모듈</h3>
+                    <p class="hint">해금한 각 업그레이드 모듈의 레벨을 설정하세요 (0 = 미해금).</p>
 
                     <div class="modules-grid">
                         <div class="module-card">
-                            <h4>Ecological Module <span class="info-icon" data-tooltip="Lv.1: quick wheat&#10;Lv.2: quick bamboo&#10;Lv.3: quick potato&#10;Lv.4: quick lemon&#10;Lv.5: quick rice&#10;Lv.6: quick maple syrup&#10;Lv.7: quick strawberry&#10;Lv.8: quick coconut">?</span></h4>
+                            <h4>생태 모듈 <span class="info-icon" data-tooltip="Lv.1: 속성 밀&#10;Lv.2: 속성 대나무&#10;Lv.3: 속성 감자&#10;Lv.4: 속성 레몬&#10;Lv.5: 속성 쌀&#10;Lv.6: 속성 메이플 시럽&#10;Lv.7: 속성 딸기&#10;Lv.8: 속성 코코넛">?</span></h4>
                             <div class="input-field">
-                                <label for="ecological-module-level">Level</label>
+                                <label for="ecological-module-level">레벨</label>
                                 <input type="number" id="ecological-module-level" value="0" min="0" max="10">
                             </div>
                         </div>
 
                         <div class="module-card">
-                            <h4>Kitchen Module <span class="info-icon" data-tooltip="Lv.2: premium bread&#10;Lv.3: premium potato soup&#10;Lv.4: premium sweet rice wine&#10;Lv.5: premium salted lemon&#10;Lv.6: premium jello&#10;Lv.7: premium berry chocolate coconut pudding">?</span></h4>
+                            <h4>주방 모듈 <span class="info-icon" data-tooltip="Lv.2: 고급 빵&#10;Lv.3: 고급 감자 스프&#10;Lv.4: 고급 식혜&#10;Lv.5: 고급 소금 꿀레몬&#10;Lv.6: 고급 푸딩&#10;Lv.7: 고급 초코 코코넛 푸딩">?</span></h4>
                             <div class="input-field">
-                                <label for="kitchen-module-level">Level</label>
+                                <label for="kitchen-module-level">레벨</label>
                                 <input type="number" id="kitchen-module-level" value="0" min="0" max="10">
                             </div>
                         </div>
 
                         <div class="module-card">
-                            <h4>Resource Detector <span class="info-icon" data-tooltip="Lv.1: quick well water&#10;Lv.2: quick sea salt&#10;Lv.3: quick aromathyst&#10;Lv.4: quick fresh water&#10;Lv.5: quick wool&#10;Lv.6: quick deep rock spring water&#10;Lv.7: quick natural mineral spring water&#10;Lv.8: quick scales">?</span></h4>
+                            <h4>자원 탐지기 <span class="info-icon" data-tooltip="Lv.1: 속성 우물물&#10;Lv.2: 속성 천일염&#10;Lv.3: 속성 자수정 정수&#10;Lv.4: 속성 깨끗한 물&#10;Lv.5: 속성 양털&#10;Lv.6: 속성 암반수&#10;Lv.7: 속성 천연 광천수&#10;Lv.8: 속성 비늘">?</span></h4>
                             <div class="input-field">
-                                <label for="resource-detector-level">Level</label>
+                                <label for="resource-detector-level">레벨</label>
                                 <input type="number" id="resource-detector-level" value="0" min="0" max="10">
                             </div>
                         </div>
 
                         <div class="module-card">
-                            <h4>Crafting Module <span class="info-icon" data-tooltip="Lv.1: premium river-washed stones&#10;Lv.2: premium rose freshener&#10;Lv.3: advanced lemon incense&#10;Lv.4: advanced wind chime&#10;Lv.5: premium soap&#10;Lv.6: advanced gemstone dust&#10;Lv.7: premium mixed perfume">?</span></h4>
+                            <h4>제작 모듈 <span class="info-icon" data-tooltip="Lv.1: 고급 강돌 조각&#10;Lv.2: 고급 장미 디퓨저&#10;Lv.3: 고급 레몬 향초&#10;Lv.4: 고급 풍경&#10;Lv.5: 고급 비누&#10;Lv.6: 고급 보석 가루&#10;Lv.7: 고급 조합 향수">?</span></h4>
                             <div class="input-field">
-                                <label for="crafting-module-level">Level</label>
+                                <label for="crafting-module-level">레벨</label>
                                 <input type="number" id="crafting-module-level" value="0" min="0" max="10">
                             </div>
                         </div>
@@ -94,24 +91,24 @@
                 </div>
 
                 <div class="strategy">
-                    <h3>Strategy</h3>
-                    <div class="tabs" role="radiogroup" aria-label="Strategy">
-                        <label><input type="radio" name="strategy" id="strategy-level-up" value="level-up" checked> Level up</label>
-                        <label><input type="radio" name="strategy" id="strategy-coins" value="coins"> Most coins</label>
+                    <h3>최적화 목표</h3>
+                    <div class="tabs" role="radiogroup" aria-label="최적화 목표">
+                        <label><input type="radio" name="strategy" id="strategy-level-up" value="level-up" checked> 영지 레벨업</label>
+                        <label><input type="radio" name="strategy" id="strategy-coins" value="coins"> 코인 최대화</label>
                     </div>
 
                     <div id="level-up-config">
-                        <p class="hint">Gets the coins, Woodworking Bench item and Chimney Kiln item for your next RV level as soon as possible, then earns as many coins as that leaves room for.</p>
+                        <p class="hint">다음 영지 레벨업에 필요한 코인, 목공 작업대 아이템, 굴뚝 가마 아이템을 최단 시간에 수급하고 남는 자원으로 코인을 최대한 생산합니다.</p>
                         <div class="input-row" id="level-up-target-row">
                             <div class="input-field">
-                                <label for="level-up-target">Level up to RV</label>
+                                <label for="level-up-target">목표 영지 레벨 (RV)</label>
                                 <select id="level-up-target"></select>
                             </div>
                         </div>
                         <div id="level-up-cost"></div>
                         <details class="explain" id="level-up-stock">
-                            <summary>What you already have</summary>
-                            <p class="hint small">Counts toward the level-up. Wood Blocks, Mineral Sand and lower tiers get processed up.</p>
+                            <summary>현재 보유 재고</summary>
+                            <p class="hint small">레벨업 필요 수량 차감에 반영됩니다. 통나무, 광산 모래 및 하위 등급 재료는 가공 공정에 자동 투입됩니다.</p>
                             <div class="stock-grid" id="level-up-stock-grid"></div>
                         </details>
                     </div>
@@ -120,16 +117,16 @@
                         <div class="checkbox-field">
                             <label>
                                 <input type="checkbox" id="prioritize-byproducts" checked>
-                                Prioritize Wood Blocks and Mineral Sand
+                                통나무 및 광산 모래 최우선 생산
                             </label>
-                            <span class="info-icon" data-tooltip="Make as much Wood Blocks and Mineral Sand as possible first, then as many coins as that allows. Leave unticked to go purely for coins.">?</span>
+                            <span class="info-icon" data-tooltip="통나무와 광산 모래를 최대한 수급한 후, 남아있는 자원으로 코인을 최대 생산합니다. 체크 해제 시 코인 생산에만 집중합니다.">?</span>
                         </div>
                     </div>
                 </div>
 
                 <button id="optimize-btn" class="optimize-btn">
-                    <span class="btn-text">Find the best plan</span>
-                    <span class="btn-loading" style="display: none;">Solving...</span>
+                    <span class="btn-text">최적의 플랜 탐색</span>
+                    <span class="btn-loading" style="display: none;">계산 중...</span>
                 </button>
                 <div id="progress-bar-container" class="progress-bar-container" style="display: none;">
                     <div id="progress-bar-fill" class="progress-bar-fill"></div>
@@ -145,40 +142,40 @@
                         <div class="card-head">
                             <button type="button" class="collapse-toggle" id="aniimo-toggle" aria-expanded="false" aria-controls="aniimo-body">
                                 <span class="chevron" aria-hidden="true"></span>
-                                <h2>Aniimo team</h2>
+                                <h2>추천 애니이모 팀</h2>
                             </button>
-                            <div class="tabs compact" role="radiogroup" aria-label="Aniimo setup">
-                                <label title="Level-3 Aniimo with each facility's personality: the fastest plan"><input type="radio" name="aniimo-setup" id="aniimo-best" value="best" checked> Best</label>
-                                <label title="The lowest ability level each recipe accepts: the least you can get by with"><input type="radio" name="aniimo-setup" id="aniimo-minimum" value="minimum"> Minimum</label>
+                            <div class="tabs compact" role="radiogroup" aria-label="애니이모 배치">
+                                <label title="각 시설 성격과 보너스가 일치하는 레벨 3 애니이모: 최고 속도 생산"><input type="radio" name="aniimo-setup" id="aniimo-best" value="best" checked> 권장 (최적화)</label>
+                                <label title="각 레시피의 최소 요구 능력치 레벨: 최소 요구 조건"><input type="radio" name="aniimo-setup" id="aniimo-minimum" value="minimum"> 최소 조건</label>
                             </div>
                         </div>
                         <p class="collapsed-summary" id="aniimo-collapsed-summary"></p>
-                        <div class="ability-strip" id="aniimo-abilities" aria-label="Aniimo needed per ability"></div>
-                        <p class="hint small" id="aniimo-pending" style="display: none;">Still working out the Minimum setup...</p>
+                        <div class="ability-strip" id="aniimo-abilities" aria-label="능력치별 필요 애니이모 수"></div>
+                        <p class="hint small" id="aniimo-pending" style="display: none;">최소 조건 배치를 계산하는 중입니다...</p>
                         <div id="aniimo-body" hidden>
                             <details class="explain">
-                                <summary>How the team is worked out</summary>
-                                <p><strong>Best</strong> puts a level-3 Aniimo with the facility's personality on every job, the fastest possible. <strong>Minimum</strong> uses the lowest ability level each recipe accepts, with no personality bonus: slower, but it's what you need at the very least. The plan below follows whichever is picked.</p>
-                                <p>Aniimo move between any jobs they can do, so the counts cover the work on average rather than one per facility; Farmland and Woodland jobs are included. Facilities with a resident Aniimo (Sandcastle, Dewy House and the like) need one each, and so does each Heat Furnace (Fire), Cooling Unit (Ice) and Sunlamp (Light) in use. Whether an environment building's Aniimo level or personality matters isn't known yet. Each recipe's minimum ability level and the Farmland/Woodland jobs haven't been checked in game yet.</p>
+                                <summary>팀 배치 계산 방식</summary>
+                                <p><strong>권장</strong> 설정은 각 작업 시설 성격과 부합하는 Lv.3 애니이모를 배치하여 생산 속도를 최대화합니다. <strong>최소 조건</strong> 설정은 성격 보너스 없이 레시피 가동에 필요한 최소 능력 레벨만 고려합니다. 아래 생산 계획은 선택한 모드에 맞춰 적용됩니다.</p>
+                                <p>애니이모는 유동적으로 일터로 이동하므로 평균 작업량 기준 필요 인원이 산출됩니다. 모래성, 듀이 하우스 등 상주형 시설과 열로(화염), 냉각 장치(빙결), 태양등(채광) 등 환경 시설도 인원이 반영됩니다.</p>
                             </details>
                             <div id="aniimo-summary"></div>
                         </div>
                     </div>
 
                     <div class="card level-up-card" id="level-up-card" style="display: none;">
-                        <span class="summary-label" id="level-up-label">Level-up</span>
+                        <span class="summary-label" id="level-up-label">레벨업 소요 시간</span>
                         <div class="summary-value" id="level-up-time">-</div>
                         <div id="level-up-lines"></div>
                     </div>
 
                     <div class="card rate-card">
-                        <span class="summary-label">Your rate</span>
+                        <span class="summary-label">시간당 수익</span>
                         <div class="rate-line">
                             <span class="summary-value" id="plan-rate">-</span>
-                            <select id="rate-unit" class="rate-unit-select" aria-label="Rate unit">
-                                <option value="second">per second</option>
-                                <option value="hour">per hour</option>
-                                <option value="day">per day</option>
+                            <select id="rate-unit" class="rate-unit-select" aria-label="수익 단위">
+                                <option value="second">초당</option>
+                                <option value="hour">시간당</option>
+                                <option value="day">일당</option>
                             </select>
                         </div>
                         <p class="plan-proof" id="plan-explored-hint"></p>
@@ -186,36 +183,32 @@
                     </div>
 
                     <div class="card production-steps" id="profit-card" style="display: none;">
-                        <h2>Profit by product</h2>
-                        <p class="hint">Net of seed costs. "By the level-up" is what each earns before the level-up is ready.</p>
+                        <h2>제품별 이익 세부 내역</h2>
+                        <p class="hint">씨앗 구매 비용을 제외한 순이익입니다. '레벨업 달성 시' 열은 레벨업 직전까지 얻는 총수익입니다.</p>
                         <div id="profit-breakdown"></div>
                     </div>
 
                     <div class="card production-steps">
-                        <h2>What each facility should do</h2>
+                        <h2>시설별 지정 작업 (Plan)</h2>
                         <details class="explain">
-                            <summary>How to read this</summary>
-                            <p>Each row is one product; a facility split between several products gets a row for each. Crops that need a growing environment are grouped by the Heat Furnace, Cooling Unit or Sunlamp setting that covers them, with its layout. Everything else is grouped like the facility list.</p>
-                            <p>In the Aniimo column, each circle is an ability in its game color with the Aniimo level inside; a ring means the plan counts on the facility's personality bonus. Hover a circle for details.</p>
+                            <summary>표 읽는 방법</summary>
+                            <p>각 행은 개별 생산 품목을 나타내며, 여러 품목을 나누어 생산하는 시설은 행이 분리되어 표시됩니다. 환경 조절이 필요한 작물은 열로, 냉각 장치, 태양등 설정별로 그룹화되어 레이아웃과 함께 안내됩니다.</p>
+                            <p>애니이모 열의 아이콘은 해당 능력치 및 레벨을 의미하며, 테두리 링 표시는 해당 시설 성격 보너스가 적용되었음을 뜻합니다.</p>
                         </details>
-                        <!-- Populated by app.js's renderFacilityPlan(): one section per
-                             environment mode in use (Cool/Warm/Freeze/Scorching/Adequate) first,
-                             then one table per facility category (Materials / Environment /
-                             Materials Processing) for everything else. -->
                         <div id="facility-plan-container" class="facilities-container"></div>
                     </div>
 
                     <div class="card production-steps" id="goal-section">
-                        <h2>Set a goal</h2>
-                        <p class="hint">Updates instantly from the plan above.</p>
+                        <h2>목표 수익 및 소요 시간 계산</h2>
+                        <p class="hint">위의 최적화 계획에 따라 실시간으로 계산됩니다.</p>
                         <div class="config-group">
                             <div class="input-row">
                                 <div class="input-field">
-                                    <label for="target-amount" id="target-amount-label">Target Coins</label>
+                                    <label for="target-amount" id="target-amount-label">목표 코인</label>
                                     <input type="number" id="target-amount" value="1000" min="0">
                                 </div>
                                 <div class="input-field">
-                                    <label for="current-amount" id="current-amount-label">Current Coins</label>
+                                    <label for="current-amount" id="current-amount-label">현재 코인</label>
                                     <input type="number" id="current-amount" value="0" min="0">
                                 </div>
                             </div>
@@ -224,27 +217,27 @@
                         <div class="result-summary">
                             <div class="summary-grid">
                                 <div class="summary-item">
-                                    <span class="summary-label">Total time</span>
+                                    <span class="summary-label">총 소요 시간</span>
                                     <span class="summary-value" id="total-time">-</span>
                                 </div>
                                 <div class="summary-item">
-                                    <span class="summary-label" id="amount-produced-label">Coins Produced</span>
+                                    <span class="summary-label" id="amount-produced-label">총 생산 코인</span>
                                     <span class="summary-value" id="amount-produced">-</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="production-steps" id="product-breakdown-section" style="display: none;">
-                            <h3>Product breakdown</h3>
+                            <h3>생산품 상세 내역</h3>
                             <div class="table-wrapper">
                                 <table id="product-breakdown-table">
                                     <thead>
                                         <tr>
-                                            <th>Item</th>
-                                            <th>Facility</th>
-                                            <th>Amount</th>
-                                            <th id="product-breakdown-rate-header">Profit/sec</th>
-                                            <th>Total Worth</th>
+                                            <th>아이템</th>
+                                            <th>시설</th>
+                                            <th>생산 수량</th>
+                                            <th id="product-breakdown-rate-header">시간당 이익</th>
+                                            <th>총 가치</th>
                                         </tr>
                                     </thead>
                                     <tbody id="product-breakdown-tbody"></tbody>
@@ -253,16 +246,16 @@
                         </div>
 
                         <div class="production-steps" id="seeds-needed-section" style="display: none;">
-                            <h3>Seeds needed</h3>
+                            <h3>필요 씨앗 목록</h3>
                             <div class="table-wrapper">
                                 <table id="seeds-needed-table">
                                     <thead>
                                         <tr>
-                                            <th>Crop</th>
-                                            <th>Facility</th>
-                                            <th>Plots</th>
-                                            <th>Plantings/Plot</th>
-                                            <th>Total Seeds</th>
+                                            <th>작물</th>
+                                            <th>시설</th>
+                                            <th>밭/구역 수</th>
+                                            <th>밭당 심는 횟수</th>
+                                            <th>총 필요 씨앗</th>
                                         </tr>
                                     </thead>
                                     <tbody id="seeds-needed-tbody"></tbody>
@@ -283,12 +276,12 @@
     <div id="facilitiesModal" class="modal" onclick="closeFacilitiesOnBackdrop(event)">
         <div class="modal-content wide">
             <div class="modal-header">
-                <h2>Facility Recipes</h2>
+                <h2>시설별 도감 / 레시피 정보</h2>
                 <button class="close-button" onclick="closeFacilities()">&times;</button>
             </div>
             <div class="modal-body">
-                <p class="hint">Every recipe in the game data, grouped by facility. This is a reference table, not tied to your owned facility counts or levels.</p>
-                <p class="hint small" id="facilities-loading-hint">Loading recipe data...</p>
+                <p class="hint">게임 내 존재하는 모든 레시피 정보입니다. 현재 보유한 시설 수량이나 레벨과 상관없이 참조용으로 확인할 수 있습니다.</p>
+                <p class="hint small" id="facilities-loading-hint">레시피 데이터를 불러오는 중입니다...</p>
                 <div id="facilities-modal-container" class="facilities-container"></div>
             </div>
         </div>
@@ -298,46 +291,27 @@
     <div id="mathModal" class="modal" onclick="closeMathOnBackdrop(event)">
         <div class="modal-content modal-wide">
             <div class="modal-header">
-                <h2>How It Works</h2>
+                <h2>작동 원리 (수학적 모델)</h2>
                 <button class="close-button" onclick="closeMath()">&times;</button>
             </div>
             <div class="modal-body">
-                <h3>The model</h3>
-                <p>Every plan is one mixed-integer program covering every recipe and facility at once, solved with <a href="https://highs.dev" target="_blank" rel="noopener">HiGHS</a>. Each recipe your facility levels and modules unlock, \(r\), gets a rate \(b_r\) (batches per second) and a whole number of units \(u_r\) set to it: plots for a crop, machines for a processed item.</p>
+                <h3>최적화 모델</h3>
+                <p>모든 생산 계획은 모든 레시피와 시설을 고려한 혼합 정수 계획법(Mixed-Integer Programming)으로 모델링되어 <a href="https://highs.dev" target="_blank" rel="noopener">HiGHS 솔버</a>로 풀립니다. 해금된 레시피 \(r\)에 대해 초당 생산 횟수 \(b_r\)과 할당할 단위 수량 \(u_r\)을 결정합니다.</p>
                 <div class="math-block">\[ \max \ \sum_i p_i \, s_i \;-\; \sum_r c_r \, b_r \]</div>
-                <p>where \(s_i\) is how much of item \(i\) is sold per second at price \(p_i\), and \(c_r\) is a crop's seed cost. Subject to:</p>
+                <p>여기서 \(s_i\)는 초당 판매량, \(p_i\)는 판매 가격, \(c_r\)은 씨앗 구매 비용입니다.</p>
                 <ul>
-                    <li><strong>Whole units.</strong> \(b_r \, t_r \le u_r\), with \(u_r\) a whole number and \(t_r\) the time per batch. A unit runs one recipe and is left running.</li>
-                    <li><strong>Item balance.</strong> Everything made covers what other recipes use plus what's sold. A quick variant makes the same item as the regular one.</li>
-                    <li><strong>What you own.</strong> For every facility and level \(L\), the units on recipes needing level \(L\) or higher add up to at most what you own at that level. A higher-level plot can run a lower-level recipe.</li>
-                    <li><strong>Growing environments.</strong> Plots of a crop needing Cool, Warm, Freeze, Scorching or Adequate must be covered by a Heat Furnace, Cooling Unit or Sunlamp set to that mode (see below).</li>
+                    <li><strong>정수 단위 할당:</strong> 각 시설 및 밭은 하나의 레시피를 전담하여 수행합니다.</li>
+                    <li><strong>자원 균형:</strong> 생산된 재료는 다른 레시피의 투입 재료 및 판매량과 정확히 일치합니다.</li>
+                    <li><strong>보유 제약 조건:</strong> 시설 레벨별 최대 설치 수량을 초과하지 않습니다. 높은 레벨의 밭은 하위 작물도 재배 가능합니다.</li>
+                    <li><strong>환경 조절:</strong> 특정 환경(서늘함, 따뜻함, 추움, 뜨거움, 적정)을 요구하는 작물은 열로, 냉각 장치, 태양등의 범위를 고려해 배치됩니다.</li>
                 </ul>
-                <p>HiGHS either proves the plan is the best possible, which the results say, or stops after 30 seconds and reports how far from the best it could be. Every plan is then re-checked on its own before it's shown.</p>
 
-                <h3>Time per batch</h3>
-                <p>Crops and trees take their grow time. Everything else has a workload, and how long it takes depends on the Aniimo working it: 108 workload takes 108s at ability level 1, 36s at level 2 and 27s at level 3. The facility's personality makes it 20% faster.</p>
+                <h3>작업당 소요 시간</h3>
+                <p>농경 작물은 성장 시간이 적용되며, 가공품은 작업량(Workload)이 존재합니다. 애니이모 능력치 레벨(1레벨=108s, 2레벨=36s, 3레벨=27s) 및 시설 맞춤 성격 보너스(+20% 속도)가 연산됩니다.</p>
                 <div class="math-block">\[ t = \frac{\text{workload}}{k \times 1.2^{\,\text{personality}}} \]</div>
-                <p>with \(k\) = 1, 3 or 4 for ability level 1, 2 or 3, and the personality term counted only when the Aniimo has the facility's personality.</p>
 
-                <h3>Environment coverage</h3>
-                <p>Each Heat Furnace, Cooling Unit and Sunlamp is 2×2 tiles and covers a 9×9 area centered on it. A plot counts as covered if any part of it is inside, and everything snaps to quarter tiles. Every useful way one building can cover a mix of Farmland, Woodland and the rest is worked out once by exact packing; the plan then picks a mode and one of those mixes for each building.</p>
-
-                <h3>Level up</h3>
-                <p>A level-up costs coins \(C_0\) plus a Woodworking Bench item and a Chimney Kiln item, \(C_1\) and \(C_2\), and you may already have some of each, \(S_j\). The plan finds the most level-ups per day, \(\lambda\), it could keep up, where for coins and each item:</p>
-                <div class="math-block">\[ \text{made}_j \ \ge\ \frac{\lambda \, (C_j - S_j)}{86400} \]</div>
-                <p>(\(\text{made}_j\) per second), so the level-up takes \(1/\lambda\) days. Stock of anything lower in a chain (Wood Blocks, Mineral Sand, a lower tier) counts toward what's made, since the Bench and Kiln process it up. Two more solves follow, each keeping what the last one found: the most coins at that pace, then as much extra of the level-up items as spare Bench and Kiln time allows. That's why ore often finishes before wood and shows up as surplus.</p>
-                <p>Each tier takes 8 of the tier below (4 for the last), so the Bench and Kiln switch between tiers rather than running one recipe like other processors.</p>
-
-                <h3>Prioritizing Wood Blocks and Mineral Sand</h3>
-                <p>With Most coins and this ticked, the plan first finds the most Wood Blocks, and the most Mineral Sand, your facilities can make per second. It then earns as many coins as it can while still making that much of each.</p>
-
-                <h3>Time to reach a goal</h3>
-                <p>Each product starts adding up once its first batch clears its ingredient chain (its lead time), then keeps its steady rate:</p>
-                <div class="math-block">\[ \text{amount}(t) = \sum_i \text{rate}_i \cdot \max(0,\ t - \text{lead}_i) \]</div>
-                <p>This only ever grows with \(t\), so the time to reach a target is found by binary search.</p>
-
-                <h3>The backup planner</h3>
-                <p>If the exact planner can't run (rare; reloading the page usually fixes it), an older planner steps in. It solves the same problem as a continuous linear program, rounds to whole plots and one recipe per machine, then re-solves. Its plans are usually close to the best but not guaranteed, and the results say when it was used.</p>
+                <h3>영지 레벨업 전략</h3>
+                <p>다음 영지 레벨업에 필요한 재화 및 가공 자원을 가장 빠르게 모으는 비율을 계산한 후, 남는 공정 시간 및 자원을 코인 생산에 효율적으로 배분합니다.</p>
             </div>
         </div>
     </div>
@@ -346,32 +320,18 @@
     <div id="helpModal" class="modal" onclick="closeHelpOnBackdrop(event)">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>How to Use</h2>
+                <h2>사용 가이드</h2>
                 <button class="close-button" onclick="closeHelp()">&times;</button>
             </div>
             <div class="modal-body">
-                <h3>1. Tell it what you've built</h3>
-                <p><strong>Simple</strong>: pick your RV level, and the calculator assumes you've built and upgraded everything that level allows. <strong>Advanced</strong>: set the count and level of every facility and upgrade module yourself. "Customize in Advanced" copies the Simple setup over as a starting point.</p>
+                <h3>1. 영지 현황 입력</h3>
+                <p><strong>간편 설정</strong>: 현재 영지 레벨(RV)을 선택하면 해금된 모든 건물이 최대로 배치된 것으로 간주합니다. <strong>상세 설정</strong>: 시설별 수량과 레벨, 모듈 레벨을 직접 입력합니다.</p>
 
-                <h3>2. Pick a strategy</h3>
-                <p><strong>Level up</strong> gets everything your next RV level costs as soon as possible: its coins, a Woodworking Bench item and a Chimney Kiln item. Under "What you already have", enter what you've got; Wood Blocks, Mineral Sand and lower tiers count too, since the Bench and Kiln process them up. The plan still earns as many coins as it can on the way. Level-up costs are known from RV 7 on. In Advanced you can pick which RV level to plan for.</p>
-                <p><strong>Most coins</strong> goes for coins alone. Ticking "Prioritize Wood Blocks and Mineral Sand" makes as much of those as possible first, then as many coins as that allows.</p>
+                <h3>2. 최적화 목표 선택</h3>
+                <p><strong>영지 레벨업</strong>: 다음 RV 레벨업에 필요한 재료 및 코인을 최소 시간에 수급하는 계획을 세웁니다. <strong>코인 최대화</strong>: 오직 수익 극대화를 목표로 생산을 최적화합니다.</p>
 
-                <h3>3. Find the best plan</h3>
-                <p>Click "Find the best plan" to see how long the level-up takes (or your best rate) and what each facility should make. Set it up once and leave it running. Everything you enter is saved in your browser; "Clear saved values" resets it.</p>
-
-                <h3>4. Set a goal (optional)</h3>
-                <p>With Most coins, enter a target amount and your current balance to see how long it will take. This updates instantly as you type.</p>
-
-                <h3>Understanding the results</h3>
-                <ul>
-                    <li><strong>Aniimo team</strong>: which Aniimo to keep on your homeland, for the fastest setup (Best) or the least you can get by with (Minimum). Open it for the full list.</li>
-                    <li><strong>Level-up</strong>: how soon you'll have everything the level-up costs, and how fast each cost comes in. The slowest one is in bold. Surplus is what's left over when it's ready, such as extra coins or ore.</li>
-                    <li><strong>Your rate</strong>: coins per second, hour or day. "Proven best plan" means no other plan does better, for the game data we have.</li>
-                    <li><strong>Profit by product</strong>: with Level up, what each product earns per hour and by the time the level-up is ready.</li>
-                    <li><strong>What each facility should do</strong>: what to set each facility to, all running at once. Recipes tagged "unverified" haven't been checked in game yet.</li>
-                    <li><strong>Set a goal</strong>: with Most coins, how long a target amount takes and what gets made along the way.</li>
-                </ul>
+                <h3>3. 플랜 검색 및 결과 확인</h3>
+                <p>'최적의 플랜 탐색' 버튼을 누르면 추천 애니이모 배치, 시간당 수익, 시설별 지정 작업 목록을 확인할 수 있습니다.</p>
             </div>
         </div>
     </div>
@@ -382,9 +342,9 @@
             const button = document.getElementById('themeToggle');
             body.classList.toggle('light');
             if (body.classList.contains('light')) {
-                button.textContent = 'dark';
+                button.textContent = '다크 모드';
             } else {
-                button.textContent = 'light';
+                button.textContent = '라이트 모드';
             }
         }
         
@@ -404,7 +364,6 @@
         
         window.showMath = function() {
             document.getElementById('mathModal').classList.add('show');
-            // Trigger MathJax to render
             if (window.MathJax) {
                 MathJax.typesetPromise();
             }
@@ -420,7 +379,6 @@
             }
         }
         
-        // Close modal on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeHelp();
