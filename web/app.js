@@ -4,7 +4,7 @@ import {
     FACILITIES, FACILITY_CATEGORIES, FACILITY_CATEGORY_BY_NAME,
     MAX_HOME_LEVEL, COUNTS_CONFIRMED_UP_TO, ANIIMO_MAX, simpleSetup,
     LEVEL_UP_COSTS, LEVEL_UP_CHAINS,
-} from './facility-config.js';
+} from './facility-config.js'; // 파일명이 facility-config.js 인지 꼭 확인해 주세요!
 
 let wasmReady = false;
 
