@@ -21,7 +21,7 @@
     --error: #ef6b68;
     --warning: #f0b35a;
     --radius: 12px;
-    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
     --font-mono: "Courier New", Courier, monospace;
 }
 
@@ -231,7 +231,7 @@ p {
     cursor: pointer;
 }
 
-/* Radio Group (currency selector) */
+/* Radio Group */
 .radio-group {
     display: flex;
     gap: 1.5rem;
@@ -367,7 +367,6 @@ p {
     font-size: 0.85rem;
 }
 
-/* Simple / advanced input mode switch. */
 .mode-switch {
     display: flex;
     gap: 1.5rem;
@@ -381,7 +380,6 @@ p {
     cursor: pointer;
 }
 
-/* One owned tier's remove button, sitting inline at the end of its Count/Level row. */
 .tier-remove-btn {
     cursor: pointer;
     background: none;
@@ -398,7 +396,6 @@ p {
     border-color: var(--text);
 }
 
-/* Adds one more owned tier (e.g. "+ Add level") below a facility's tier rows. */
 .add-tier-btn {
     cursor: pointer;
     background: none;
@@ -469,9 +466,6 @@ p {
     cursor: not-allowed;
 }
 
-/* Progress bar shown while find_plan runs in the worker (see worker.js); fill width is driven by
-   the solver's own real trial-solve count (see `trialCountToPercent` in app.js), not a decorative
-   animation, so it actually reflects work happening. */
 .progress-bar-container {
     width: 100%;
     height: 4px;
@@ -489,7 +483,6 @@ p {
     transition: width 0.15s ease-out;
 }
 
-/* Error Message */
 .error-message {
     border: 1px solid var(--error);
     color: var(--error);
@@ -498,7 +491,6 @@ p {
     font-size: 0.9rem;
 }
 
-/* Results Summary */
 .result-summary {
     margin-bottom: 1.5rem;
 }
@@ -547,7 +539,6 @@ p {
     border-color: var(--text);
 }
 
-/* Byproduct bonus rows, appended to the bottom of the Product Breakdown table */
 #product-breakdown-table tbody tr.byproduct-row {
     color: var(--warning);
     font-style: italic;
@@ -557,7 +548,6 @@ p {
     border-top: 1px dashed var(--warning);
 }
 
-/* Production Steps */
 .production-steps {
     margin-bottom: 1.5rem;
 }
@@ -568,155 +558,12 @@ p {
     gap: 0.5rem;
 }
 
-.energy-info {
-    border: 1px solid var(--success);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    color: var(--success);
-    font-size: 0.85rem;
-}
-
-.energy-info strong {
-    display: block;
-    margin-bottom: 0.25rem;
-}
-
-.parallel-info {
-    border: 1px solid #9f7aea;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    color: #9f7aea;
-    font-size: 0.85rem;
-}
-
-.parallel-info strong {
-    display: block;
-    margin-bottom: 0.25rem;
-}
-
 .step-item {
     border: 1px solid var(--border);
     padding: 0.75rem 1rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.step-number {
-    width: 1.75rem;
-    height: 1.75rem;
-    border: 1px solid var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    flex-shrink: 0;
-}
-
-.step-number.energy-step {
-    border-color: var(--warning);
-    color: var(--warning);
-}
-
-.step-number.profit-step {
-    border-color: var(--success);
-    color: var(--success);
-}
-
-.step-number.parallel-step {
-    border-color: #9f7aea;
-    color: #9f7aea;
-    font-weight: bold;
-}
-
-/* Chain Groups for Parallel Mode */
-.chain-group {
-    border: 1px solid var(--border);
-    margin-bottom: 0.5rem;
-    background: var(--bg-lighter);
-}
-
-.chain-header {
-    padding: 0.75rem 1rem;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chain-title {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.chain-number {
-    background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
-    color: white;
-    padding: 0.25rem 0.6rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-.chain-path {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-}
-
-.chain-meta {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-.chain-step {
-    border: none;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-lighter);
-}
-
-.chain-step:last-child {
-    border-bottom: none;
-}
-
-.step-indicator {
-    width: 1.5rem;
-    color: #9f7aea;
-    font-weight: bold;
-    flex-shrink: 0;
-    text-align: center;
-}
-
-.step-details {
-    flex: 1;
-}
-
-.step-name {
-    font-size: 0.9rem;
-}
-
-.step-facility {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-.step-allocation {
-    font-size: 0.75rem;
-    color: #9f7aea;
-    margin-top: 0.25rem;
-    font-style: italic;
-}
-
-.step-meta {
-    text-align: right;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-/* Options Table */
-.all-options {
-    margin-bottom: 1rem;
 }
 
 .table-wrapper {
@@ -753,9 +600,6 @@ tbody tr:first-child td {
     font-weight: bold;
 }
 
-/* Facility plan tables (one per category, see renderFacilityPlan in app.js): status reflects
-   role (producing/idle/not needed), not row position, overriding the generic "highlight first
-   row" rule above so it doesn't imply the first facility listed is special. */
 .facility-plan-table tbody tr:first-child td {
     color: inherit;
     font-weight: normal;
@@ -767,9 +611,6 @@ tbody tr:first-child td {
     color: var(--text-muted);
 }
 
-/* Environment building layout diagram (see renderEnvironmentDiagram in app.js): a simple SVG
-   showing the solver's own chosen facility placements around one building instance, next to that
-   instance's table. */
 .env-unit {
     display: flex;
     flex-wrap: wrap;
@@ -858,8 +699,6 @@ tbody tr:first-child td {
     color: var(--text-muted);
 }
 
-/* Recipe reference tables (facility recipe modal): one table per facility, listed row order
-   reflects level/name sort, not importance, same override as the facility-plan table above. */
 .recipe-table tbody tr:first-child td {
     color: inherit;
     font-weight: normal;
@@ -874,7 +713,6 @@ tbody tr:first-child td {
     margin-bottom: 0.5rem;
 }
 
-/* Footer */
 footer {
     text-align: center;
     padding: 2rem 0;
@@ -884,13 +722,11 @@ footer {
     margin-top: 2rem;
 }
 
-/* Loading State */
 .loading {
     opacity: 0.5;
     pointer-events: none;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
     body {
         margin: 2rem auto;
@@ -931,10 +767,6 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
-    }
-
-    .step-meta {
-        text-align: left;
     }
 
     th,
@@ -1049,51 +881,6 @@ footer {
     border-left: 2px solid var(--border);
 }
 
-.modal-body h4 {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-}
-
-.modal-body ol {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-}
-
-.modal-body ol li {
-    margin-bottom: 0.75rem;
-}
-
-.modal-body ol li ul {
-    margin-top: 0.5rem;
-    margin-bottom: 0;
-}
-
-.math-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 0.85rem;
-}
-
-.math-table th,
-.math-table td {
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--border);
-    text-align: left;
-}
-
-.math-table th {
-    background: rgba(128, 128, 128, 0.1);
-    font-weight: bold;
-}
-
-/* ========================================
-   Cards, tabs and badges
-   ======================================== */
-
 .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1128,11 +915,6 @@ footer {
     margin: 0;
 }
 
-.card-lead {
-    color: var(--text-muted);
-    margin-bottom: 1.25rem;
-}
-
 .toggle-button.small {
     font-size: 0.8rem;
     color: var(--text-muted);
@@ -1159,7 +941,6 @@ footer {
     line-height: 1.2;
 }
 
-/* Segmented tabs built from radio labels. */
 .tabs {
     display: inline-flex;
     gap: 2px;
@@ -1212,7 +993,6 @@ footer {
     font-size: 0.85rem;
 }
 
-/* Inputs */
 .input-field input,
 .input-field select {
     background: var(--surface-2);
@@ -1229,7 +1009,6 @@ footer {
     max-width: 16rem;
 }
 
-/* Simple mode: what the RV level assumes, as a grid of chips. */
 .assume-title {
     font-size: 0.75rem;
     color: var(--text-muted);
@@ -1272,14 +1051,6 @@ footer {
     font-size: 0.78rem;
 }
 
-/* Options and the main button */
-.option-row {
-    gap: 0.4rem;
-    margin: 1.5rem 0 1rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--border);
-}
-
 .optimize-btn {
     background: var(--accent);
     color: var(--on-accent);
@@ -1294,7 +1065,6 @@ footer {
     position: relative;
 }
 
-/* The exact planner doesn't report progress, so the bar just shows it's working. */
 .progress-bar-fill.indeterminate {
     position: absolute;
     width: 35%;
@@ -1307,7 +1077,6 @@ footer {
     to { left: 100%; }
 }
 
-/* Results: the rate */
 .rate-card .summary-label {
     margin-bottom: 0.1rem;
 }
@@ -1374,7 +1143,6 @@ footer {
     color: var(--warning);
 }
 
-/* Collapsible explanations */
 details.explain {
     margin-bottom: 1rem;
     font-size: 0.82rem;
@@ -1396,7 +1164,6 @@ details.explain p {
     font-size: 0.82rem;
 }
 
-/* Tables */
 .card table {
     font-size: 0.85rem;
 }
@@ -1451,7 +1218,6 @@ details.explain p {
     border-color: var(--error);
 }
 
-/* Inputs inside the Advanced tab's facility and module cards. */
 .facility-card .input-field input,
 .module-card .input-field input {
     background: var(--surface);
@@ -1462,7 +1228,6 @@ details.explain p {
         padding: 1rem;
     }
 
-    /* Plan tables become one labelled block per row on narrow screens. */
     .facility-plan-table thead {
         display: none;
     }
@@ -1503,7 +1268,6 @@ details.explain p {
     }
 }
 
-/* Aniimo team card: collapsed to a one-line summary until opened. */
 .collapse-toggle {
     display: flex;
     align-items: center;
@@ -1554,7 +1318,6 @@ details.explain p {
     margin-top: 1rem;
 }
 
-/* Aniimo abilities in their in-game colors. */
 .ability {
     display: inline-block;
     padding: 0.05rem 0.5rem;
@@ -1571,7 +1334,6 @@ details.explain p {
     color: #1d1f22;
 }
 
-/* How many of each ability a plan needs, like the game's Abilities screen. */
 .ability-strip {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
@@ -1622,7 +1384,6 @@ details.explain p {
     color: var(--text-muted);
 }
 
-/* The facility plan's Aniimo column: one colored circle per ability, level inside. */
 .ability-dots {
     display: inline-flex;
     flex-wrap: wrap;
@@ -1648,13 +1409,10 @@ details.explain p {
     color: #1d1f22;
 }
 
-/* A ring marks an Aniimo that has the facility's personality bonus. */
 .ability-dot.bonus {
     box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--ability);
 }
 
-/* The Aniimo behind each ability count, one circle each. */
-/* One column per ability: its box, then its Aniimo circles below it. */
 .ability-col {
     display: flex;
     flex-direction: column;
@@ -1679,7 +1437,6 @@ details.explain p {
     display: inline-flex;
 }
 
-/* Beside the circle without shifting it, so circles line up in their column. */
 .ability-times {
     position: absolute;
     left: 100%;
@@ -1702,7 +1459,6 @@ details.explain p {
     box-shadow: 0 0 0 1.5px var(--surface-2), 0 0 0 2.75px var(--ability);
 }
 
-/* Strategy: level up or most coins. */
 .strategy {
     margin: 1.5rem 0 1.25rem;
     padding-top: 1.25rem;
@@ -1738,7 +1494,6 @@ details.explain p {
     margin: 0.5rem 0 0;
 }
 
-/* Results: how soon the level-up is covered. */
 .level-up-card .summary-value {
     font-size: 2rem;
     font-weight: 700;
@@ -1780,7 +1535,6 @@ details.explain p {
     color: var(--text);
 }
 
-/* Popups use more of a phone's width. */
 @media (max-width: 600px) {
     .modal {
         padding: 0.5rem;
@@ -1799,7 +1553,6 @@ details.explain p {
     }
 }
 
-/* Crop and tree jobs in the recipe list: "Sowing [Grass]". */
 .job-list {
     display: flex;
     flex-direction: column;
@@ -1824,7 +1577,6 @@ details.explain p {
     white-space: nowrap;
 }
 
-/* Recipe tables become one labelled block per recipe on phones. */
 @media (max-width: 600px) {
     .recipe-table thead {
         display: none;
@@ -1854,8 +1606,6 @@ details.explain p {
         padding-bottom: 0.3rem;
     }
 
-    /* The "not checked" tooltip hangs from the name cell, not the icon, so a long name can't
-       push it past the edge. */
     .recipe-table td.recipe-name {
         position: relative;
     }
@@ -1890,8 +1640,6 @@ details.explain p {
     }
 }
 
-/* Table header tooltips open downward (a scrolling table would clip them above), and the last
-   column's stays inside the table's right edge. */
 .table-wrapper th [data-tooltip]::after {
     bottom: auto;
     top: 100%;
@@ -1907,7 +1655,6 @@ details.explain p {
     transform: none;
 }
 
-/* Time and Sell stay on one line; Inputs wraps instead. */
 .recipe-table td:nth-child(5),
 .recipe-table td:nth-child(6) {
     white-space: nowrap;
