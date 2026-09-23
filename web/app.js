@@ -4,7 +4,7 @@ import {
     FACILITIES, FACILITY_CATEGORIES, FACILITY_CATEGORY_BY_NAME,
     MAX_HOME_LEVEL, COUNTS_CONFIRMED_UP_TO, ANIIMO_MAX, simpleSetup,
     LEVEL_UP_COSTS, LEVEL_UP_CHAINS,
-} from './facility-config.js'; // 파일명이 facility-config.js 인지 꼭 확인해 주세요!
+} from './facility-config.js';
 
 let wasmReady = false;
 
@@ -92,7 +92,6 @@ const CURRENCY_LABELS = {
     coins: '코인',
 };
 
-// 시간 표시 변환 라벨 (한국어)
 const RATE_UNIT_SECONDS = {
     second: { multiplier: 1, suffix: '/초' },
     hour: { multiplier: 3600, suffix: '/시간' },
@@ -109,7 +108,6 @@ function defaultFacilityTiers() {
     return tiers;
 }
 
-// 영문 카테고리/시설 이름을 한국어로 표시하기 위한 번역 맵
 const CATEGORY_NAMES_KO = {
     'Materials': '기본 자원',
     'Environment': '환경 시설',
@@ -1064,7 +1062,6 @@ const ENVIRONMENT_MODE_COLORS = {
     Adequate: '#facc15',
 };
 
-// 환경 조절 번역
 const ENV_MODE_KO = {
     Warm: '따뜻함',
     Scorching: '뜨거움',
